@@ -4,10 +4,12 @@ const MODERN_ACTIVITY= 15;
 const HALF_LIFE_PERIOD= 5730;
 
 module.exports = function dateSample(sampleActivity) {
-  if (typeof(sampleActivity) !== "number") return false;
-  else if (sampleActivity < 0 && sampleActivity > 15) return false;
-  let strCount = (Math.log(15 / sampleActivity) / 1.22).toFixed(2);
-  let data = Number(strCount) * 10000;
-  if (data > 2020) return false;
-  return data;
+  debugger;
+  if (typeof(sampleActivity) !== "string") return false;
+  let numberSampleActivity = +sampleActivity;
+  if (!isNaN(numberSampleActivity)) {
+    if (numberSampleActivity <= 0 || numberSampleActivity > 15) return false;
+  } else return false;
+  let strCount = (Math.log(15 / numberSampleActivity) / 1.22).toFixed(2);
+  return Number(strCount) * 10000;
 };
